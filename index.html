@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noarchive">
+<link rel="alternate" href="https://maps-website.com/" hreflang="en">
+<link rel="alternate" href="https://maps-website.com/de" hreflang="de">
+<link rel="alternate" href="https://maps-website.com/es" hreflang="es">
+<link rel="alternate" href="https://maps-website.com/fr" hreflang="fr">
+<link rel="alternate" href="https://maps-website.com/it" hreflang="it">
+<title>maplocator</title>
+<meta name="description" content="GOOGLE MAP for Your Website ➀ Fill in Your Address ➁ Choose Map Type and Size ➂ Copy & Paste Your Google Map Code. DONE! Free, NO Registration, NO Email! '">
+<link media="all" type="text/css" rel="stylesheet" href="https://maps-website.com/css/bootstrap.min.css">
+<link media="all" type="text/css" rel="stylesheet" href="https://maps-website.com/css/custom.css">
+<link media="all" type="text/css" rel="stylesheet" href="https://maps-website.com/css/jquery-ui.min.css">
+<meta name="csrf-token" id="csrf-token" content="I1QI7IO6AqWy8SZ7LPBJatIkOI0cxnmESxEUd7b1">
+
+
+<!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+</head>
+<body>
+<div class="header">
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-md-offset-1">
+<div class="logo">
+    
+<font size=4><b>LOCATION TRACKER</b></font>
+</div>
+</div>
+<div class="col-md-6">
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+<div class="row">
+<div class="col-md-5">
+<div class="custom-container">
+<div class="custom-container-title">Fill location details</div>
+<input type="hidden" id="geoip_country" value="Tanzania">
+<input type="hidden" id="geoip_lat" value="-6.7963">
+<input type="hidden" id="geoip_lon" value="39.2847">
+<label for="title">Phone Number</label>
+<input type="text" id="title" name="title" class="form-control" placeholder="Phone Number">
+<br />
+<label for="street">Street</label>
+<input type="text" id="street" name="street" class="form-control" placeholder="Street">
+<br />
+<div class="row">
+<div class="col-md-6">
+<label for="zip_code">Zip Code</label>
+<input type="text" id="zip" name="zip_code" class="form-control" placeholder="Optional" value="">
+</div>
+<div class="col-md-6">
+<label for="city">City</label>
+<input type="text" id="city" name="city" class="form-control" placeholder="City" value=" ">
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-md-3">
+<label for="map_type">Map Type</label>
+</div>
+<div class="col-md-9">
+<select id="map_type_combo" class="form-control">
+<option value="roadmap" selected> Roadmap </option>
+<option value="satellite"> Satellite </option>
+<option value="hybrid"> Satellite with street names </option>
+<option value="terrain"> Terrain </option>
+</select>
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-md-3">
+<label for="zoom_combo">Zoom</label>
+</div>
+<div class="col-md-9">
+<select id="zoom_combo" class="form-control">
+<option value="21"> 2.5 m</option>
+<option value="20"> 5 m</option>
+<option value="19"> 10 m</option>
+<option value="18"> 20 m</option>
+<option value="17"> 50 m</option>
+<option value="16"> 100 m</option>
+<option value="15"> 200 m</option>
+<option value="14"> 400 m</option>
+<option value="13"> 1 km</option>
+<option value="12" selected> 2 km</option>
+<option value="11"> 4 km</option>
+<option value="10"> 8 km</option>
+<option value="9"> 15 km</option>
+<option value="8"> 30 km</option>
+<option value="7"> 50 km</option>
+<option value="6"> 100 km</option>
+<option value="5"> 200 km</option>
+<option value="4"> 400 km</option>
+<option value="3"> 1000 km</option>
+<option value="2"> 2000 km</option>
+</select>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-md-7">
+<label for="map_height_slider">Map Height</label>
+<div id="map_height_slider"></div>
+</div>
+<div class="col-md-5">
+<div class="input-group">
+<input id="map_height_value" type="number" class="form-control" value="400">
+<span class="input-group-addon">px</span>
+</div>
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-md-7">
+<label for="map_width_slider">Map Width</label>
+<div id="map_width_slider"></div>
+</div>
+ <div class="col-md-5">
+<div class="input-group">
+<input id="map_width_value" type="number" class="form-control" value="520">
+<span class="input-group-addon">px</span>
+</div>
+</div>
+</div>
+</div>
+<div class="custom-container">
+<div class="custom-container-title">Find a Map Location</div>
+<div id="get_code_btn" data-toggle="modal" data-target="#myModal" class="button button-submit">Track a location</div>
+</div>
+</div>
+<div class="col-md-7">
+<div id="map-container" class="custom-container" style="width:545px; height:435px;">
+<div class="custom-container-title">Google-Maps Preview</div>
+<iframe id="map-canvas" width="520" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=+Dar es Salaam&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<div class="col-md-10 col-md-offset-1">
+<div class="custom-container">
+<div class="about">
+
+   
+  <p> All rights reserved © 2022 Developed by : <a href="https://fmpiza.github.io/webfridolin"><b>Fridolin</b></a>
+
+
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<h4 class="modal-title" id="myModalLabel">Copy widget code and paste to your website</h4>
+</div>
+<div class="modal-body">
+<textarea id="final_widget_code" class="form-control" rows="10"></textarea>
+<br>
+<div id="modal_body_iframe">
+</div>
+<button class="btn btn-success code-copy" data-toggle="tooltip" data-trigger="manual" data-placement="bottom" title="Copied">
+Copy code to clipboard
+</button>
+</div>
+<div class="modal-footer">
+<button type="button" class="button button-close" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://maps-website.com/js/jquery-1.11.1.min.js"></script>
+<script src="https://maps-website.com/js/jquery-ui.min.js"></script>
+<script src="https://maps-website.com/js/bootstrap.min.js"></script>
+<script src="https://maps-website.com/js/clipboard.min.js"></script>
+<script src="https://maps-website.com/js/custom.js?v=2"></script>
+
+
+<script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1032289389;
+        var google_conversion_label = "d0xzCK_k5gMQ7fid7AM";
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+<noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt=""
+                 src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1032289389/?value=1.00&amp;label=d0xzCK_k5gMQ7fid7AM&amp;guid=ON&amp;script=0"/>
+        </div>
+    </noscript>
+</body>
+</html>
